@@ -12,6 +12,7 @@ namespace Task_Manager
             {
                 config.CreateMap<TaskItemDTO, TaskItem>();
                 config.CreateMap<TaskItem, TaskItemDTO>();
+                config.CreateMap<ApplicationUser,UserDTO>();
             });
             return mappingConfig;
         }
