@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Task_Manager.Data;
 using Task_Manager.Models;
@@ -8,7 +9,8 @@ using Task_Manager.Models.Enums;
 namespace Task_Manager.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/task")]
+    [Authorize]
     public class TaskController : ControllerBase
     {
         private readonly AppDbContext _db;

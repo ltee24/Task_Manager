@@ -19,14 +19,29 @@ namespace Task_Manager.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegistrationRequestDTO registrationRequestDTO)
         {
-            var errorMessage = await _authService.Register(registrationRequestDTO);
-            if(!string.IsNullOrEmpty(errorMessage))
+            var registerationResponse = await _authService.Register(registrationRequestDTO);
+            if(!string.IsNullOrEmpty(registerationResponse))
             {
                 _response.IsSuccess = false;
-                _response.Message = errorMessage;
+                _response.Message = registerationResponse;
                 return BadRequest(_response);
             }
             return Ok(_response);
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginRequestDTO loginRequestDTO)
+        {
+            var loginResponse = await _authService.Login(loginRequestDTO);
+            if(loginResponse.User == null)
+            {
+                _response.IsSuccess = false;
+                _response.Message = "Username or Password is incorrect";
+                return BadRequest(_response);
+            }
+            _response.Result = loginResponse;
+            return Ok(_response);
+
         }
     }
 }
