@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Task_Manager;
 using Task_Manager.Data;
+using Task_Manager.Extensions;
 using Task_Manager.Models;
 using Task_Manager.Service;
 using Task_Manager.Service.IService;
@@ -50,6 +51,8 @@ builder.Services.AddSwaggerGen(option =>
         }
     });
 });
+
+builder.AddAppAuthentication();
 
 var app = builder.Build();
 
